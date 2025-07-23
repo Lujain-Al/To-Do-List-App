@@ -1,0 +1,44 @@
+<!-- to-do-list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To-Do List</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    #todo-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+    input[type="text"] { width: 80%; padding: 8px; }
+    button { padding: 8px 12px; }
+    li { margin: 8px 0; list-style: none; }
+    .completed { text-decoration: line-through; color: gray; }
+  </style>
+</head>
+<body>
+  <div id="todo-container">
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Add task..." />
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+      if (!task) return;
+
+      const li = document.createElement("li");
+      li.textContent = task;
+      li.onclick = () => li.classList.toggle("completed");
+
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "❌";
+      delBtn.onclick = () => li.remove();
+      li.appendChild(delBtn);
+
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
